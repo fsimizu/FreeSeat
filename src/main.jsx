@@ -33,11 +33,9 @@ const router = createBrowserRouter([
   { path: "/:eventId", element: <GuestsView /> },
   { path: "/terms", element: <LegalTerms /> },
   { path: "/privacy", element: <LegalPrivacy /> },
-
   { path: "/pricing", element: <PricingPage /> },
   { path: "/success", element: <CheckOutSuccess /> },
   { path: "/cancel", element: <CheckOutCancel /> },
-
   { path: "*", element: <NotFound /> }
 ])
 
@@ -71,3 +69,6 @@ createRoot(document.getElementById('root')).render(
 // be able to choose table or seat in the guest UI
 // choosing plan without being logged in
 // confirmation when saving guests
+
+
+// In API gateway > CORS > add url to Access-Control-Allow-Origin
