@@ -18,7 +18,7 @@
     "@mui/x-data-grid": "^8.14.1",
     "@mui/x-date-pickers": "^8.14.0",
     "@vercel/analytics": "^1.6.1",
-    "aws-amplify": "^5.3.29",
+    "aws-amplify": "^6.15.9",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.545.0",
     "qrcode.react": "^4.2.0",

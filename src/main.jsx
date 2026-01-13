@@ -54,12 +54,11 @@ createRoot(document.getElementById('root')).render(
 // CORS after deploying?
 // buy domain
 // put stripe prod details
-// add analytics
 // any security risks?
-// lazy loading en el home
+// lazy loading en el home. add animation when scrolled
 
 // what happens when autorenewal?
-// At checkout: Billed annually. Cancel anytime. Access remains until the end of your billing period.
+// At checkout (can we add?): Billed annually. Cancel anytime. Access remains until the end of your billing period.
 
 // NICE TO HAVE
 // sign in with google/apple
