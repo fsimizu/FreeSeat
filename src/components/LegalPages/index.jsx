@@ -36,7 +36,7 @@ export function TermsAndConditions(props) {
     <ScrollTopWrapper>
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
 
-      <BackButton/>
+        <BackButton />
 
         <Typography variant="h3" fontWeight={800} gutterBottom>
           Terms & Conditions
@@ -81,21 +81,50 @@ export function TermsAndConditions(props) {
           </List>
         </Section>
 
-        <Section title="4. Payments & Subscriptions">
+        <Section title="4. Payments, Billing & Cancellation">
           <List dense sx={{ listStyle: "disc", pl: 3 }}>
             <Bullet>
-              Payments are processed securely by third-party providers (e.g.
-              Stripe). Prices are in AUD and may change with notice.
+              Payments are processed securely by third-party providers (e.g. Stripe).
+              Prices are listed in AUD and may be updated from time to time with reasonable notice.
             </Bullet>
+
             <Bullet>
-              Fees may be non-refundable once services commence, except as
-              required by Australian Consumer Law.
+              Fees may be non-refundable once services commence, except as required by
+              Australian Consumer Law.
             </Bullet>
+
             <Bullet>
-              You are responsible for any internet or mobile data charges.
+              You are responsible for any internet, mobile data, or device costs
+              associated with using the Service.
+            </Bullet>
+
+            <Bullet>
+              FreeSeat subscriptions are billed annually in advance.
+            </Bullet>
+
+            <Bullet>
+              You may cancel your subscription at any time through your account
+              settings.
+            </Bullet>
+
+            <Bullet>
+              If you cancel, your subscription will remain active until the end of
+              the current billing period. No further charges will be made after
+              cancellation.
+            </Bullet>
+
+            <Bullet>
+              We do not provide refunds or credits for partially used subscription
+              periods, including unused time remaining after cancellation.
+            </Bullet>
+
+            <Bullet>
+              Your access to paid features will end automatically at the expiration
+              of your current subscription period.
             </Bullet>
           </List>
         </Section>
+
 
         <Section title="5. Your Content">
           <Typography>
@@ -182,8 +211,8 @@ export function PrivacyPolicy(props) {
     <ScrollTopWrapper>
 
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
-      <BackButton/>
-      
+        <BackButton />
+
         <Typography variant="h3" fontWeight={800} gutterBottom>
           Privacy Policy
         </Typography>

@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Navbar, RAIL_WIDTH } from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { Footer } from "../components/Footer";
+import { Analytics } from "@vercel/analytics/react"
 
 export const Layout = ({ children }) => {
   const location = useLocation();
@@ -22,6 +23,7 @@ export const Layout = ({ children }) => {
       }}
     >
       <Navbar activeId={active} />
+      <Analytics />
       <Box sx={{ display: "flex", flex: 1 }}>
         <Box
           component="main"

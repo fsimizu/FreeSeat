@@ -54,7 +54,12 @@ createRoot(document.getElementById('root')).render(
 // CORS after deploying?
 // buy domain
 // put stripe prod details
+// add analytics
+// any security risks?
+// lazy loading en el home
 
+// what happens when autorenewal?
+// At checkout: Billed annually. Cancel anytime. Access remains until the end of your billing period.
 
 // NICE TO HAVE
 // sign in with google/apple
@@ -69,6 +74,8 @@ createRoot(document.getElementById('root')).render(
 // be able to choose table or seat in the guest UI
 // choosing plan without being logged in
 // confirmation when saving guests
+// Be able to edit guests
+// Be able to select and bulk delete (with quantity selected)
 
-
+// AFTER Deploying
 // In API gateway > CORS > add url to Access-Control-Allow-Origin
