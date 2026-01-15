@@ -21,7 +21,6 @@ import AccountCircleRounded from "@mui/icons-material/AccountCircleRounded";
 import EventNoteRounded from "@mui/icons-material/EventNoteRounded";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
-
 // ---- Layout constants ----
 export const RAIL_WIDTH = 76;
 const APPBAR_HEIGHT = { xs: 56, md: 64 };
@@ -49,16 +48,14 @@ const RailButton = styled(ListItemButton)(({ theme }) => ({
   height: 56,
   marginBottom: theme.spacing(1.25),
   color: theme.palette.text.secondary,
+
+  backgroundColor: "transparent",
+  "&:hover": { backgroundColor: "transparent" },
   "&.Mui-selected": {
     color: theme.palette.primary.main,
-    background: alpha(theme.palette.primary.main, 0.12),
+    backgroundColor: "transparent",
   },
-  "&.Mui-selected:hover": {
-    background: alpha(theme.palette.primary.main, 0.16),
-  },
-  "&:hover": {
-    background: alpha(theme.palette.action.hover, 0.08),
-  },
+  "&.Mui-selected:hover": { backgroundColor: "transparent" },
 }));
 
 export function Navbar({ activeId = "home", onSelect }) {
@@ -71,7 +68,6 @@ export function Navbar({ activeId = "home", onSelect }) {
     { id: "home", label: "Home", icon: <HomeRounded />, path: "/" },
     { id: "account", label: "Account", icon: <AccountCircleRounded />, path: "/login" },
     { id: "events", label: "Events", icon: <EventNoteRounded />, path: "/events" },
-    // { id: "page", label: "Page", icon: <HomeRounded />, path: "/page" },
   ];
 
   const current = items.find((i) => i.id === activeId);
@@ -90,43 +86,71 @@ export function Navbar({ activeId = "home", onSelect }) {
     // ---- Desktop: permanent rail BELOW the AppBar ----
     return (
       <RailRoot
-      sx={{
-        top: 0,
-        bottom: 0,
-        height: "100vh",
-        zIndex: (theme) => theme.zIndex.drawer, // under AppBar, above content
-      }}
-    >
+        sx={{
+          top: 0,
+          bottom: 0,
+          height: "100vh",
+          width: 90,
+          zIndex: (theme) => theme.zIndex.drawer,
+        }}
+      >
         <List disablePadding sx={{ mt: 0.5 }}>
           {items.map((item) => (
-            <Tooltip key={item.id} title={item.label} placement="right" arrow>
               <RailButton
+                key={item.id} title={item.label} placement="right" arrow
                 component={Link}
                 to={item.path}
                 selected={activeId === item.id}
                 onClick={() => onSelect?.(item.id)}
-                // sx={{
-                //   display: 'flex',
-                //   flexDirection: 'column',
-                //   justifyContent: "flex-start",
-                //   px: 1.5,
-                //   gap: 1,
-                // }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 0.5,
+                  py: 1.25,
+                  my: 2,
+                  textAlign: "center",
+
+                  "&:hover .iconChip": { bgcolor: "action.hover" },
+                  "&:hover .iconSvg": { transform: "scale(1.06)" },
+
+                  "&.Mui-selected .iconChip": { bgcolor: "action.selected" },
+                  "&.Mui-selected .iconSvg": { transform: "scale(1.06)" },
+                }}
               >
-                <ListItemIcon
+                <Box
+                  className="iconChip"
                   sx={{
-                    minWidth: 0,
-                    color:
-                      activeId === item.id
-                        ? theme.palette.primary.main
-                        : theme.palette.text.secondary,
+                    width: 56,
+                    p: 0.5,
+                    borderRadius: 4,
+                    display: "grid",
+                    placeItems: "center",
+                    transition: (t) => t.transitions.create("background-color"),
+                    bgcolor: activeId === item.id ? "action.selected" : "transparent",
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                {/* <ListItemText primary={item.label} /> */}
+
+                  <ListItemIcon sx={{ minWidth: 0, color: "inherit" }}>
+                    {React.cloneElement(item.icon, {
+                      className: "iconSvg",
+                      style: { transition: "transform 150ms ease" },
+                    })}
+                  </ListItemIcon>
+                </Box>
+
+                <Typography
+                  variant="caption"
+                  sx={{
+                    lineHeight: 1,
+                    fontSize: 12,
+                    color: "inherit", // follows selected color
+                  }}
+                >
+                  {item.label}
+                </Typography>
               </RailButton>
-            </Tooltip>
           ))}
         </List>
       </RailRoot>

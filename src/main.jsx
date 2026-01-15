@@ -51,20 +51,19 @@ createRoot(document.getElementById('root')).render(
 )
 
 // TO DO:
-// CORS after deploying?
-// buy domain
 // put stripe prod details
 // any security risks?
-// lazy loading en el home. add animation when scrolled
+// CORS after deploying?
+// buy domain
+// add email and logo in the footer
 
 // what happens when autorenewal?
 // At checkout (can we add?): Billed annually. Cancel anytime. Access remains until the end of your billing period.
 
 // NICE TO HAVE
 // sign in with google/apple
-// label in the navbar
 // app colors (change to green)
-// contact us
+// contact us form
 // public url with alias, not id
 // not found page route
 // when pasting from excel in guest list, it leaves the white cell
@@ -75,6 +74,7 @@ createRoot(document.getElementById('root')).render(
 // confirmation when saving guests
 // Be able to edit guests
 // Be able to select and bulk delete (with quantity selected)
+// dark mode
 
 // AFTER Deploying
 // In API gateway > CORS > add url to Access-Control-Allow-Origin
