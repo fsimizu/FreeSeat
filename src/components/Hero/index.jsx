@@ -16,6 +16,9 @@ import {
   Grid,
   Stack,
   Typography,
+  Fab,
+  Zoom,
+  useScrollTrigger,
   useMediaQuery, useTheme
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
@@ -24,6 +27,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { PricingPage } from "../Pricing";
 import { motion } from "framer-motion";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const HeroRoot = styled("section")(({ theme }) => ({
   background: alpha(theme.palette.secondary.light, 0.1),
@@ -76,10 +80,12 @@ export function Hero() {
   }, [hash]);
 
   return (
+    <ScrollTopWrapper>
     <Container maxWidth="lg">
 
       {/* Hero */}
       <Box
+        id="hero"
         component={motion.section}
         variants={sectionVariants}
         initial="hidden"
@@ -383,5 +389,51 @@ export function Hero() {
       </Box>
 
     </Container>
+    <BackToTopFab />
+    </ScrollTopWrapper>
+  );
+}
+
+// ---------Helpers
+
+function ScrollTopWrapper({ children }) {
+  return (
+    <Box id="back-to-top-anchor" sx={{ position: "relative" }}>
+      {children}
+    </Box>
+  );
+}
+
+function BackToTopFab() {
+  const trigger = useScrollTrigger({
+    threshold: 200,
+    disableHysteresis: true,
+  });
+
+  const handleClick = () => {
+    const el = document.scrollingElement || document.documentElement;
+    if (el && el.scrollTo) {
+      el.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        role="presentation"
+        sx={{
+          position: "fixed",
+          bottom: 24,
+          right: 24,
+          zIndex: (t) => t.zIndex.tooltip + 1,
+        }}
+      >
+        <Fab color="primary" size="medium" aria-label="scroll back to top" onClick={handleClick}>
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Box>
+    </Zoom>
   );
 }

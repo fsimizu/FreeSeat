@@ -55,7 +55,6 @@ createRoot(document.getElementById('root')).render(
 // any security risks?
 // CORS after deploying?
 // buy domain
-// add email and logo in the footer
 
 // what happens when autorenewal?
 // At checkout (can we add?): Billed annually. Cancel anytime. Access remains until the end of your billing period.
@@ -75,6 +74,7 @@ createRoot(document.getElementById('root')).render(
 // Be able to edit guests
 // Be able to select and bulk delete (with quantity selected)
 // dark mode
+// be able to choose fonts, backgrounds, etc
 
 // AFTER Deploying
 // In API gateway > CORS > add url to Access-Control-Allow-Origin
