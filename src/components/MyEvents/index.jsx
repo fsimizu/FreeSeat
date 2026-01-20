@@ -53,7 +53,13 @@ export function MyEvents() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 2, py: { xs: 1, md: 3 } }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: 2,
+        py: { xs: 1, md: 3 }
+      }}
+    >
       <Box>
         {/* Hero */}
         <Box

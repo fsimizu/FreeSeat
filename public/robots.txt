@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block everything except the homepage
+Disallow: /
+Allow: /$
+
+Sitemap: https://freeseat.com.au/sitemap.xml

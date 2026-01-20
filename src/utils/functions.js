@@ -1,4 +1,4 @@
-import { signUp, signIn, confirmSignIn, fetchAuthSession } from '@aws-amplify/auth';
+import { signUp, signIn, confirmSignIn, fetchAuthSession } from 'aws-amplify/auth';
 
 // COGNITO FUNCTIONS
 async function ensureUserExists(email) {

@@ -17,7 +17,6 @@ import { theme } from "./theme";
 import { LegalTerms } from "./routes/legalTerms.jsx";
 import { LegalPrivacy } from "./routes/legalPrivacy.jsx";
 import { NotFound } from "./components/NotFound";
-
 import { PricingPage } from "./components/Pricing";
 import { CheckOutCancel } from "./routes/checkOutCancel.jsx";
 import { CheckOutSuccess } from "./routes/checkOutSuccess.jsx";
@@ -55,6 +54,9 @@ createRoot(document.getElementById('root')).render(
 // any security risks?
 // CORS after deploying?
 // buy domain
+// SEO
+
+
 
 // what happens when autorenewal?
 // At checkout (can we add?): Billed annually. Cancel anytime. Access remains until the end of your billing period.
@@ -75,6 +77,7 @@ createRoot(document.getElementById('root')).render(
 // Be able to select and bulk delete (with quantity selected)
 // dark mode
 // be able to choose fonts, backgrounds, etc
+// be able to paste the MFA 
 
 // AFTER Deploying
 // In API gateway > CORS > add url to Access-Control-Allow-Origin

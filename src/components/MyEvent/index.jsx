@@ -85,7 +85,7 @@ export function MyEvent() {
   return (
     <Container
       maxWidth="lg"
-      disableGutters
+
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -95,7 +95,6 @@ export function MyEvent() {
       }}
     >
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
-
 
         {/* Top bar */}
         <Box

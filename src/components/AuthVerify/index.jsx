@@ -16,10 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 export function AuthVerify() {
   const navigate = useNavigate();
-
-  // Change this to 6 if you switch to a custom 6-digit flow
   const CODE_LENGTH = 8;
-
   const [email, setEmail] = useState(() => localStorage.getItem("email") || "");
   const [code, setCode] = useState(Array(CODE_LENGTH).fill(""));
   const inputsRef = useRef([]);
@@ -105,6 +102,7 @@ export function AuthVerify() {
       setLoading(true);
       setError("");
       const res = await confirmEmailCode(joined);
+
       if (res?.isSignedIn) {
         navigate("/events");
       } else {
@@ -185,7 +183,6 @@ export function AuthVerify() {
                   inputMode="numeric"
                   aria-label={`Digit ${i + 1}`}
                   autoComplete={i === 0 ? "one-time-code" : "off"}
-                  // pattern is handled by our own sanitiser; keeping it here for mobile keyboards:
                   pattern="\d{1}"
                   maxLength={1}
                   value={v}
@@ -193,7 +190,6 @@ export function AuthVerify() {
                   onKeyDown={(e) => handleKeyDown(e, i)}
                   ref={(el) => (inputsRef.current[i] = el)}
                   sx={{
-                    // width: { xs: 30, sm: 36, md: 48 },
                     width: "10vw" , 
                     maxWidth: 38,
                     height: { xs: 44, sm: 50 , md: 56 },

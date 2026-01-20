@@ -19,7 +19,6 @@ import { signIn, confirmSignIn } from '@aws-amplify/auth';
 import { startEmailOtpSignIn } from "../../utils/functions";
 import { UserContext } from "../../context/UserContext";
 
-
 const handleGoogleSignIn = () => {
     console.log("Google sign-in clicked");
     // 🔗 Add your Google OAuth logic here
@@ -53,20 +52,16 @@ export function AuthLoginForm({
             setError("");
     
             if (!isValidEmail(email)) return;
-    
+
             try {
                 setLoading(true);
-                // 🔹 Call Cognito to start passwordless (Email OTP) sign-in
                 const result = await startEmailOtpSignIn(email);
-        
-                // if you want to store email globally or pass it to next step:
                 localStorage.setItem("email", email);
-    
-                // 🔹 Continue your flow:
+
                 if (onContinue) {
                     onContinue(email);
                 } else {
-                    navigate("/verify"); // go to OTP verification page
+                    navigate("/verify");
                 }
             } catch (err) {
                 console.error(err);
