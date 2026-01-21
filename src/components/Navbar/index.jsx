@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   AppBar,
   Box,
+  ButtonBase,
   Drawer,
   IconButton,
   List,
@@ -20,6 +21,10 @@ import HomeRounded from "@mui/icons-material/HomeRounded";
 import AccountCircleRounded from "@mui/icons-material/AccountCircleRounded";
 import EventNoteRounded from "@mui/icons-material/EventNoteRounded";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { ColorModeContext } from "../../main"; // adjust path
 
 // ---- Layout constants ----
 export const RAIL_WIDTH = 76;
@@ -63,6 +68,15 @@ export function Navbar({ activeId = "home", onSelect }) {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const location = useLocation();
   const [open, setOpen] = React.useState(false);
+  const { toggleColorMode } = React.useContext(ColorModeContext);
+
+
+  const [bump, setBump] = React.useState(false);
+  const handleToggle = () => {
+    setBump(true);
+    toggleColorMode();
+    window.setTimeout(() => setBump(false), 220);
+  };
 
   const items = [
     { id: "home", label: "Home", icon: <HomeRounded />, path: "/" },
@@ -92,12 +106,16 @@ export function Navbar({ activeId = "home", onSelect }) {
           height: "100vh",
           width: 90,
           zIndex: (theme) => theme.zIndex.drawer,
+          display: 'flex',
+          justifyContent: 'space-between',
+          py: 2,
+          color: "text.secondary"
         }}
       >
         <List disablePadding sx={{ mt: 0.5 }}>
           {items.map((item) => (
+            <Tooltip key={item.id} title={item.label} placement="right" arrow>
               <RailButton
-                key={item.id} title={item.label} placement="right" arrow
                 component={Link}
                 to={item.path}
                 selected={activeId === item.id}
@@ -109,7 +127,7 @@ export function Navbar({ activeId = "home", onSelect }) {
                   justifyContent: "center",
                   gap: 0.5,
                   py: 1.25,
-                  my: 2,
+                  mb: 2.5,
                   textAlign: "center",
 
                   "&:hover .iconChip": { bgcolor: "action.hover" },
@@ -151,8 +169,23 @@ export function Navbar({ activeId = "home", onSelect }) {
                   {item.label}
                 </Typography>
               </RailButton>
+            </Tooltip>
           ))}
+
         </List>
+
+        <IconButton onClick={handleToggle} color="inherit" aria-label="Toggle theme">
+          <span
+            style={{
+              display: "inline-flex",
+              transform: bump ? "translateY(6px)" : "translateY(0px)",
+              transition: "transform 220ms ease",
+            }}
+          >
+            {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+          </span>
+        </IconButton>
+
       </RailRoot>
     );
   }
@@ -191,6 +224,7 @@ export function Navbar({ activeId = "home", onSelect }) {
             Seat
           </Typography>
 
+
         </Toolbar>
       </AppBar>
 
@@ -228,11 +262,21 @@ export function Navbar({ activeId = "home", onSelect }) {
               },
               width: 280,
               zIndex: (t) => t.zIndex.appBar - 1,
+
             },
           },
         }}
       >
-        <Box role="presentation" sx={{ mt: 1 }}>
+        <Box
+          role="presentation"
+          sx={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            color: "text.secondary"
+          }}
+        >
+          {/* Top menu */}
           <List>
             {items.map((item) => {
               const selected = activeId === item.id;
@@ -246,9 +290,7 @@ export function Navbar({ activeId = "home", onSelect }) {
                 >
                   <ListItemIcon
                     sx={{
-                      color: selected
-                        ? theme.palette.primary.main
-                        : theme.palette.text.secondary,
+                      color: selected ? theme.palette.primary.main : theme.palette.text.secondary,
                     }}
                   >
                     {item.icon}
@@ -258,6 +300,40 @@ export function Navbar({ activeId = "home", onSelect }) {
               );
             })}
           </List>
+
+          <ButtonBase
+            onClick={toggleColorMode}
+            aria-label="Toggle theme"
+            sx={{
+              mt: "auto",
+              mb: 2,
+              mx: "auto",
+              maxWidth: 260,
+              borderRadius: 999,
+              border: "1px solid",
+              borderColor: "divider",
+              color: "text.secondary",
+              py: 1.25,
+              px: 1.5,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 1.25,
+              transition: (t) =>
+                t.transitions.create(["background-color", "border-color", "transform"], {
+                  duration: t.transitions.duration.shortest,
+                }),
+              "&:hover": { bgcolor: "action.hover" },
+              "&:active": { transform: "translateY(2px)" },
+            }}
+          >
+            {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+
+            <Typography variant="body2" sx={{ color: "inherit" }}>
+              {theme.palette.mode === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            </Typography>
+          </ButtonBase>
+
         </Box>
       </Drawer>
     </>

@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Amplify } from "aws-amplify";
-import { StrictMode } from 'react';
+import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { awsConfig } from "./aws-exports";
@@ -13,7 +13,7 @@ import { Login } from './routes/login.jsx';
 import { PrivateRoute } from './routes/privateRoute.jsx';
 import { Root } from './routes/root.jsx';
 import { Verify } from './routes/verify.jsx';
-import { theme } from "./theme";
+import { getTheme } from "./theme";
 import { LegalTerms } from "./routes/legalTerms.jsx";
 import { LegalPrivacy } from "./routes/legalPrivacy.jsx";
 import { NotFound } from "./components/NotFound";
@@ -22,6 +22,11 @@ import { CheckOutCancel } from "./routes/checkOutCancel.jsx";
 import { CheckOutSuccess } from "./routes/checkOutSuccess.jsx";
 
 Amplify.configure(awsConfig);
+
+export const ColorModeContext = React.createContext({
+  mode: "light",
+  toggleColorMode: () => {},
+});
 
 const router = createBrowserRouter([
   { path: "/", element: <Root /> },
@@ -38,19 +43,57 @@ const router = createBrowserRouter([
   { path: "*", element: <NotFound /> }
 ])
 
-createRoot(document.getElementById('root')).render(
+function AppProviders() {
+  const [mode, setMode] = React.useState(() => localStorage.getItem("mode") || "light");
+
+  const toggleColorMode = React.useCallback(() => {
+    setMode((prev) => {
+      const next = prev === "light" ? "dark" : "light";
+      localStorage.setItem("mode", next);
+      return next;
+    });
+  }, []);
+
+  const theme = React.useMemo(() => getTheme(mode), [mode]);
+
+  return (
+    <ColorModeContext.Provider value={{ mode, toggleColorMode }}>
+      <ThemeProvider theme={theme}>
+        <UserProvider>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </UserProvider>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <UserProvider>
-        <CssBaseline />
-        <RouterProvider router={router} />
-      </UserProvider>
-    </ThemeProvider>
-  </StrictMode>,
-)
+    <AppProviders />
+  </StrictMode>
+);
+
+// createRoot(document.getElementById('root')).render(
+//   <StrictMode>
+//     <ThemeProvider theme={theme}>
+//       <UserProvider>
+//         <CssBaseline />
+//         <RouterProvider router={router} />
+//       </UserProvider>
+//     </ThemeProvider>
+//   </StrictMode>,
+// )
 
 // TO DO:
 // put stripe prod details
+    // pk_test, 
+    // sk_test (lambda: events, webhook, checkout) - DONE
+    // webhook secret (lambda: webhook) - DONE
+    // price ids (lambda: checkout) - DONE, 
+
+// allowed ulrs (lambda: webhook, checkout)
+// validate stripe
 // any security risks?
 // CORS after deploying?
 // buy domain

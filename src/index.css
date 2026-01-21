@@ -8,3 +8,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body {
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+/* Optional: make common MUI surfaces fade too */
+.MuiPaper-root,
+.MuiAppBar-root,
+.MuiDrawer-paper,
+.MuiCard-root,
+.MuiButton-root,
+.MuiIconButton-root {
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+}

@@ -47,11 +47,10 @@ export function EventQR({ eventId }) {
     };
 
     const buttonStyle = {
-        width: 40,
-        height: 40,
-        borderRadius: (theme) => theme.spacing(1),
-        backgroundColor: 'grey.200',
-        '&:hover': { backgroundColor: 'grey.300' },
+        width: { xs: 44, sm: 40 },
+        height: { xs: 44, sm: 40 },
+        borderRadius: 1,
+        bgcolor: (t) => t.palette.action.selected,
     };
 
     return (
@@ -97,7 +96,6 @@ export function EventQR({ eventId }) {
                 )}
             </Box>
 
-
             {/* Collapsible QR section */}
             <Collapse in={isSmall ? openSmall : true}>
                 <Box
@@ -128,7 +126,8 @@ export function EventQR({ eventId }) {
                             value={`${BASE_URL}${eventId}`}
                             size={180}
                             level="H"
-                            fgColor="#000000"
+                            // fgColor="#000000"
+                            fgColor={theme.palette.text.primary}
                             bgColor="transparent"
                         />
                     </Paper>

@@ -212,7 +212,7 @@ export function EventGuestGrid({
             '& .MuiOutlinedInput-root': {
               borderRadius: '20px',
               paddingLeft: 0,
-              backgroundColor: 'white',
+              // backgroundColor: 'white',
               fontSize: '0.9rem',
               minWidth: '300px',
             },

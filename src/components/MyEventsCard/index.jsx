@@ -114,9 +114,9 @@ export function MyEventsCard({ event, onClick, onDeleted, onUpdated }) {
   const iconBtn = {
     width: { xs: 44, sm: 40 },
     height: { xs: 44, sm: 40 },
-    borderRadius: (t) => t.spacing(1),
-    backgroundColor: 'grey.200',
-    '&:hover': { backgroundColor: 'grey.300' },
+    borderRadius: 1,
+    bgcolor: (t) => t.palette.action.selected,
+    // '&:hover': { backgroundColor: 'grey.300' },
   };
 
   return (
