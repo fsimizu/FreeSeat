@@ -182,7 +182,19 @@ export function Navbar({ activeId = "home", onSelect }) {
               transition: "transform 220ms ease",
             }}
           >
+
+
             {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+
+            {/* <Typography variant="caption"
+                  sx={{
+                    lineHeight: 1,
+                    fontSize: 12,
+                    color: "inherit", // follows selected color
+                  }}>
+              {theme.palette.mode === "dark" ? "Light mode" : "Dark mode"}
+            </Typography> */}
+
           </span>
         </IconButton>
 
