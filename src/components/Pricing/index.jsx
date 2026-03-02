@@ -73,7 +73,7 @@ const PLANS = [
 function formatAud(amount, isFree = false) {
   return new Intl.NumberFormat("en-AU", {
     style: "currency",
-    currency: "AUD",
+    currency: "USD",
     maximumFractionDigits: isFree ? 0 : 2,
   }).format(amount);
 }
@@ -82,7 +82,7 @@ function formatMonthlyFromAnnual(annualPrice) {
   const monthly = annualPrice / 12;
   return new Intl.NumberFormat("en-AU", {
     style: "currency",
-    currency: "AUD",
+    currency: "USD",
     maximumFractionDigits: 2,
   }).format(monthly);
 }
@@ -195,7 +195,7 @@ export function PricingPage() {
               Simple, scalable pricing
             </Typography>
             <Typography color="text.secondary">
-              Prices in AUD. Upgrade as your guest list grows. All plans include QR publishing and instant search.
+              Prices in USD. Upgrade as your guest list grows. All plans include QR publishing and instant search.
             </Typography>
           </Stack>
 
